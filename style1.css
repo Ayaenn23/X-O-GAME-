@@ -1,0 +1,827 @@
+/* Variables CSS */
+:root {
+    /* Thème sombre par défaut */
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --primary-color: #00ffff;
+    --secondary-color: #ff00ff;
+    --accent-color: #ffff00;
+    --button-bg: rgba(0, 0, 0, 0.5);
+    --button-border: #00ffff;
+    --button-hover: rgba(0, 255, 255, 0.2);
+    --cell-bg: rgba(0, 0, 0, 0.3);
+    --cell-border: #00ffff;
+    --x-color: #f5d742;
+    --o-color: #42a5f5;
+    --modal-bg: #1a1a2e;
+    --modal-border: #00ffff;
+    --shadow-color: rgba(0, 255, 255, 0.5);
+    --page1-bg: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('unnamed3.webp') no-repeat center center/cover;
+  }
+  
+  [data-theme="light"] {
+    --bg-color: #f5f5f5;
+    --text-color: #333333;
+    --primary-color: #0066ff;
+    --secondary-color: #ff3300;
+    --accent-color: #ffcc00;
+    --button-bg: rgba(255, 255, 255, 0.7);
+    --button-border: #0066ff;
+    --button-hover: rgba(0, 102, 255, 0.1);
+    --cell-bg: rgba(255, 255, 255, 0.8);
+    --cell-border: #0066ff;
+    --x-color: #ff3300;
+    --o-color: #0066ff;
+    --modal-bg: #ffffff;
+    --modal-border: #0066ff;
+    --shadow-color: rgba(0, 102, 255, 0.3);
+    --page1-bg: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+                url('unnamed3.webp') no-repeat center center/cover;
+  }
+  
+  /* Styles de base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+  }
+  
+  .page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .page.active {
+    display: flex;
+  }
+  
+  /* Page 1 - Menu Principal */
+  #page1 {
+    background: var(--page1-bg);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Icônes */
+  .top-icons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+  }
+  
+  .settings-wrapper {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .user-icon, .settings-icon {
+    font-size: 24px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .user-icon:hover, .settings-icon:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+  }
+  
+  /* Titres */
+  .game-title {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--primary-color);
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+  
+  h2 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+  }
+  
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 5px var(--primary-color);
+    }
+    to {
+      text-shadow: 0 0 15px var(--primary-color), 0 0 25px var(--secondary-color);
+    }
+  }
+  
+  /* Boutons */
+  .play-button, .difficulty-btn, .mode-btn, .back-button, #connectButton,.btn-onlin {
+    background: var(--button-bg);
+    color: var(--text-color);
+    border: 2px solid var(--button-border);
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 0 10px var(--shadow-color);
+  }
+  
+  .play-button , .btn-onlin {
+    font-size: 1.5rem;
+    padding: 20px 40px;
+  }
+  
+  .play-button:hover, .difficulty-btn:hover, .mode-btn:hover, 
+  .back-button:hover, #connectButton:hover,.btn-onlin:hover {
+    background: var(--button-hover);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--shadow-color);
+  }
+  .btn-onlin a{
+      text-decoration: none;
+      color: var(--text-color);
+  }
+  
+  /* Groupes de boutons */
+  .difficulty-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  
+    justify-content: center;
+    max-width: 600px;
+    gap: 15px;
+  }
+  .mode-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  
+    justify-content: center;
+    max-width: 600px;
+    gap: 15px;
+  }
+  
+  /* En-tête du jeu */
+  .game-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid var(--primary-color);
+  }
+  
+  .game-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .score-display {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .score-display span {
+    font-size: 0.9rem;
+    color: var(--text-color);
+  }
+  
+  .current-player {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  /* Plateau de jeu */
+  .game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px var(--shadow-color);
+  }
+  
+  #gameBoard4x4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .game-board .cell {
+    width: 80px;
+    height: 80px;
+    background: var(--cell-bg);
+    border: 2px solid var(--cell-border);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .game-board .cell:hover {
+    background: var(--button-hover);
+  }
+  
+  /* Symboles électriques */
+  .cell.x {
+    color: var(--x-color);
+    text-shadow: 0 0 10px var(--x-color);
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .cell.o {
+    color: var(--o-color);
+    text-shadow: 0 0 10px var(--o-color);
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  .winning-cell {
+    animation: glow 0.5s infinite alternate;
+  }
+  
+  /* Modal des paramètres */
+  .modal,.moal1 {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+  }
+  
+  .modal-content {
+    background: var(--modal-bg);
+    margin: 10% auto;
+    padding: 20px;
+    border: 2px solid var(--modal-border);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    color: var(--text-color);
+    box-shadow: 0 0 30px var(--shadow-color);
+    position: relative;
+  }
+  
+  .modal-content1 {
+    background: var(--modal-bg);
+    margin: 3% auto;
+    padding: 20px;
+    border: 2px solid var(--modal-border);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    color: var(--text-color);
+    box-shadow: 0 0 30px var(--shadow-color);
+    position: relative;
+  }
+  
+  .close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: var(--primary-color);
+  }
+  
+  .settings-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 0;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--primary-color);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* Section connexion */
+  .connection-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .connection-form {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+  }
+  
+  .connection-form input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--text-color);
+  }
+  
+  .connection-status {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-color);
+    opacity: 0.7;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .game-title {
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+    }
+    
+    .difficulty-buttons, .mode-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .game-board .cell {
+      width: 60px;
+      height: 60px;
+      font-size: 2rem;
+    }
+    
+    .score-display {
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+  
+  /* Win Message Overlay */
+  .win-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .win-message.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .win-message:not(.hidden) {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  .win-message h2 {
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--primary-color);
+  }
+  
+  .play-again-btn{
+    background: var(--primary-color);
+    color: #ffffff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .play-again-btn:hover {
+    background: var(--secondary-color);
+  }
+  
+  /* Game Over Modal */
+  .game-over-content {
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+    width: 420px;                
+    height: 370px                  
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  #gameOverTitle {
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+  
+  body.dark-theme #gameOverTitle {
+    color: #4da6ff;
+  }
+  
+  #gameOverMessage {
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .game-emoji {
+    font-size: 3rem;
+    margin: 20px 0;
+  }
+  
+  .game-over-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .game-over-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  #playAgainButton {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  #playAgainButton:hover {
+    background-color: #218838;
+  }
+  
+  #backToMenuButton {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  #backToMenuButton:hover {
+    background-color: #5a6268;
+  }
+  
+  body.dark-theme #playAgainButton {
+    background-color: #2cb1c8;
+  }
+  
+  body.dark-theme #playAgainButton:hover {
+    background-color: #2398ad;
+  }
+  
+  /* Animation for winning cells */
+  @keyframes winAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .win-animation {
+    animation: winAnimation 0.5s ease-in-out 3;
+  }
+  
+  /* Utility Classes */
+  .hidden {
+    display: none;
+  }
+  
+  /* RTL Support for Arabic */
+  html[dir="rtl"] .top-icons {
+    right: auto;
+    left: 20px;
+  }
+  
+  html[dir="rtl"] .settings-wrapper {
+    flex-direction: row-reverse;
+  }
+  
+  html[dir="rtl"] .play-button,
+  html[dir="rtl"] .back-button,
+  html[dir="rtl"] .btn-onlin  {
+    flex-direction: row-reverse;
+  }
+  
+  html[dir="rtl"] .close-btn {
+    right: auto;
+    left: 15px;
+  }
+  
+  html[dir="rtl"] .settings-option {
+    flex-direction: row-reverse;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .game-title {
+      font-size: 2rem;
+    }
+  
+    .play-button,
+    .difficulty-btn,
+    .mode-btn .btn-onlin {
+      font-size: 1rem;
+      padding: 12px 20px;
+    }
+  
+    .cell {
+      font-size: 2rem;
+    }
+  
+    #gameBoard4x4 {
+      max-width: 300px;
+    }
+  }
+  
+  .bod{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    position: relative;
+  }
+  
+  .form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 350px;
+    margin-bottom: 40px;
+   
+  }
+  
+  
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .inscrire-btn {
+    background-color: #28a745;
+    color: white;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .facebook-btn {
+    background-color: #3b5998;
+    color: white;
+    width:340px;
+  
+  }
+  
+  .google-btn {
+    background-color: #db4437;
+    color: white;
+    width: 340px;
+  
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .success-message {
+    color: green;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  
+  
+  
+  /* User Modal Styles */
+  .user-modal-content {
+    max-width: 400px;
+    padding: 30px;
+  }
+  
+  .user-modal-content .form-container {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  
+  
+  
+  .user-modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: white;
+  }
+  
+  .user-modal-content .inscrire-btn {
+    background-color: #28a745;
+    color: white;
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .user-modal-content .inscrire-btn:hover {
+    background-color: #218838;
+  }
+  
+  .user-modal-content .social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .user-modal-content .facebook-btn {
+    background-color: #3b5998;
+    color: white;
+    width: 100%;
+  }
+  
+  .user-modal-content .google-btn {
+    background-color: #db4437;
+    color: white;
+    width: 100%;
+  }
+  
+  .user-modal-content .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .user-modal-content .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .user-modal-content .success-message {
+    color: green;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* RTL Support for User Modal */
+  html[dir="rtl"] .user-modal-content .btn {
+    flex-direction: row-reverse;
+  }
+  
+  .bouton{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+  
+  }

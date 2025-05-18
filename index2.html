@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tic Tac Toe Online</title>
+    <link rel="stylesheet" href="style2.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="page1" class="page active">
+      <div class="top-icons">
+        <div class="settings-wrapper">
+          <i class="fas fa-user user-icon" id="userIcon"></i>
+          <i class="fas fa-cog settings-icon" id="settingsIcon"></i>
+        </div>
+      </div>
+
+      <h1>Tic Tac Toe Online</h1>
+
+      <button id="createGameBtn">Créer une nouvelle partie</button>
+
+      <div class="join-game">
+        <input
+          type="text"
+          id="gameIdInput"
+          placeholder="Entrez l'ID de la partie"
+        />
+        <button id="joinGameBtn">Rejoindre une partie</button>
+        <div id="joinStatus"></div>
+      </div>
+
+      <div id="gameLink" style="display: none">
+        <h3>ID de votre partie :</h3>
+        <div class="game-id-box">
+          <span id="gameIdDisplay"></span>
+          <button id="copyIdBtn">📋</button>
+        </div>
+        <p>Donnez cet ID à votre ami pour qu'il puisse rejoindre</p>
+        <button id="goToGameBtn" style="display: none">
+          Accéder à la partie
+        </button>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 data-translate="settings">Settings</h2>
+        <div class="settings-option">
+          <label data-translate="sound">Sound:</label>
+          <label class="switch">
+            <input type="checkbox" id="soundToggle" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="settings-option">
+          <label data-translate="music">Music:</label>
+          <label class="switch">
+            <input type="checkbox" id="musicToggle" checked />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="settings-option">
+          <label data-translate="theme">Theme:</label>
+          <label class="switch">
+            <input type="checkbox" id="themeToggle" />
+            <span id="themeLabel">Light</span>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="settings-option">
+          <label data-translate="language">Language:</label>
+          <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="ar">العربية</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Modal (Connexion) -->
+    <div id="userModal" class="modal">
+      <div class="modal-content user-modal-content">
+        <span class="close-btn" id="closeUserModal">&times;</span>
+        <div class="form-container">
+          <h2 data-translate="register">Register</h2>
+          <form id="registerForm">
+            <input type="text" placeholder="Name" id="name" required />
+            <input type="email" placeholder="Email" id="email" required />
+            <input
+              type="password"
+              placeholder="Password"
+              id="password"
+              required
+            />
+            <button
+              type="submit"
+              class="btn inscrire-btn"
+              data-translate="registerBtn"
+            >
+              Register
+            </button>
+          </form>
+        </div>
+        <div class="social-buttons">
+          <button class="btn facebook-btn">
+            <i class="fab fa-facebook-f"></i>
+            <span data-translate="loginWithFacebook" id="facebookLoginBtn"
+              >Login with Facebook</span
+            >
+          </button>
+
+          <button class="btn google-btn">
+            <i class="fab fa-google"></i>
+            <span data-translate="loginWithGoogle">Login with Google</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="backgroundMusic" loop>
+      <source src="sounds/audio.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="clickSound" src="sounds/click.mp3" preload="auto"></audio>
+    <audio id="winSound" src="sounds/winne.mp3" preload="auto"></audio>
+    <audio id="victorySound" src="sounds/winne.mp3" preload="auto"></audio>
+    <audio id="drawSound" src="sounds/draw.mp3" preload="auto"></audio>
+    <audio id="defeatSound" src="sounds/fail.mp3" preload="auto"></audio>
+
+    <canvas id="confettiCanvas" class="hidden"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.17/dist/index.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+    <script src="script2.js"></script>
+  </body>
+</html>
